@@ -13,5 +13,4 @@ gem 'bcrypt'
 gem "tux"
 gem "sinatra-flash"
 gem "json"
-gem "open-uri"
 gem "rest-client"
