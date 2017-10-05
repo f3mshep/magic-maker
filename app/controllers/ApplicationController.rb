@@ -1,7 +1,5 @@
 require './config/environment'
 
-ApplicationController.rb
-
 class ApplicationController < Sinatra::Base
 
   configure do

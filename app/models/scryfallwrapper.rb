@@ -11,6 +11,7 @@ class ScryfallWrapper
 		#url = base_url + order + query
 		#colon =  %3A
 		#spaces = +
+
 		#method that allows a user to search by type, rules text, or card name
 		#optional switches allow user to include cards of a certain color, type, or rarity
 		#ordered default by name, optional switches allow to sort by rarity, cost, and CMC
