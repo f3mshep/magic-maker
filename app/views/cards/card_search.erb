@@ -5,6 +5,12 @@
 	<body>
 		<form method="post" action="/cards/search">
 			<label>Card Search</label><input name="query" placeholder="Card Name" type="text">
+			<br>
+			<!-- Change this to a bootstrap dropdown --> 
+			<label>Order By: <input name="order" value="&order=usd" type="radio">Price <input name="order" value="&order=cmc" type="radio">CMC <input name="order" value="&order=edhrec" type="radio">Highest Rated </label><br>
+			<label>Color <input type="checkbox" name=color value="c%3Aw">White <input type="checkbox" name=color value="c%3Au">Blue
+			<input type="checkbox" name=color value="c%3Ab">Black<input type="checkbox" name=color value="c%3Ag">Red <input type="checkbox" name=color value="c%3Ag">Green</label>
+			<br>
 			<input type="submit" value="Submit">
 		</form>
 	</body>

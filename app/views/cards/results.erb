@@ -1,0 +1,8 @@
+<body>
+	<% @collection.each do |card| %>
+		<div>
+			<h4><%= card.name %></h4>
+			<img src="<%=card.image_url%>" alt="<%=card.name%>">
+		</div>
+	<%end%>
+</body>

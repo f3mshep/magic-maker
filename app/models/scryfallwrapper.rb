@@ -2,12 +2,12 @@ require 'rest-client'
 require 'json'
 
 class ScryfallWrapper
+	include Searchable
+
 	SEARCH_URL = 'https://api.scryfall.com/cards/search?q='
 
 	def search_query(query)
-		input = query.downcase.split.collect{|string|string.scan(/[a-z]/)}
-  	input = input.collect {|arr|arr.join("")}.join('+')
-  	SEARCH_URL + input
+  	SEARCH_URL + input_parser(query)
 		#url = base_url + order + query
 		#colon =  %3A
 		#spaces = +

@@ -1,6 +1,7 @@
 require './config/environment'
 
 class ApplicationController < Sinatra::Base
+	include Searchable
 
   configure do
   	enable :sessions
@@ -16,13 +17,25 @@ class ApplicationController < Sinatra::Base
 
   #cards
 
+  get '/cards/search/:query' do
+   	binding.pry
+  	new_search = ScryfallWrapper.new
+  	cards = new_search.call(params[:query])
+  	@collection = Card.create_or_find_from_collection(cards)
+  	erb :'/cards/results'
+  end
+
   get '/cards/search' do
   	erb :'/cards/card_search'
   end
 
   post '/cards/search' do
-  	binding.pry
+  	query = input_parser(params[:query])
+  	#include more variables here that can be tacked on to #query such as order and type options
+  	redirect "/cards/search/#{query}"
   end
+
+
 
 
 
