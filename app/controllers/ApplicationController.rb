@@ -10,4 +10,24 @@ class ApplicationController < Sinatra::Base
     register Sinatra::Flash
   end
 
+  #main site navigation
+  get '/' do
+  end
+
+  #cards
+
+  get '/cards/search' do
+  	erb :'/cards/card_search'
+  end
+
+  post '/cards/search' do
+  	binding.pry
+  end
+
+
+
+  #decks
+
+  #users
+
 end

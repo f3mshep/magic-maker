@@ -8,7 +8,7 @@ class CardTable < ActiveRecord::Migration[5.1]
   		t.float :cmc
   		t.string :mana_cost
   		t.string :color_identity
-  		t.string :type
+  		t.string :card_type
   		t.string :rules
   		t.string :flavor_text
   		t.string :price

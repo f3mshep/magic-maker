@@ -11,7 +11,7 @@ class ScryfallWrapper
 		#url = base_url + order + query
 		#colon =  %3A
 		#spaces = +
-
+		#eventually will be a method that allows controller to stick in c:r and this thing will parse it cuz it is badass.
 		#method that allows a user to search by type, rules text, or card name
 		#optional switches allow user to include cards of a certain color, type, or rarity
 		#ordered default by name, optional switches allow to sort by rarity, cost, and CMC
@@ -43,7 +43,7 @@ class ScryfallWrapper
 			card_hash[:cmc] = card["cmc"]
 			card_hash[:mana_cost] = card["mana_cost"]
 			card_hash[:color_identity] =  card["color_identity"]
-			card_hash[:type] = card["type_line"]
+			card_hash[:card_type] = card["type_line"]
 			card_hash[:rules] = card["oracle_text"]
 			card_hash[:flavor_text] = card["flavor_text"]
 			card_hash[:price] = card["usd"]

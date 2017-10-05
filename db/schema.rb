@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20171005195201) do
     t.float "cmc"
     t.string "mana_cost"
     t.string "color_identity"
-    t.string "type"
+    t.string "card_type"
     t.string "rules"
     t.string "flavor_text"
     t.string "price"
