@@ -18,9 +18,15 @@ class ApplicationController < Sinatra::Base
   #cards
 
   get '/cards/search/:query' do
-  	new_search = ScryfallWrapper.new
-  	cards = new_search.call(params[:query])
-  	@collection = Card.new_from_collection(cards)
+    new_search = ScryfallWrapper.new
+    results = new_search.call(params[:query])
+    if params[:query].include?("&page=") || results[:has_more] == true
+      #current page is either in uri or can be declared as 
+      total_pages = results[:total_cards] / 175
+      binding.pry
+    end
+    @pagination = results[:pagination]
+  	@collection = Card.new_from_collection(results[:collection])
   	erb :'/cards/results'
   end
 

@@ -23,17 +23,29 @@ class ScryfallWrapper
 		#order is default by name, can be price, CMC, or rarity
 	end
 
+	def format_finder(legalities_hash)
+		formats = ["modern", "standard", "legacy", "commander"]
+		legal_in = legalities_hash.select do |format, value|
+			formats.include?(format) && value == "legal"
+		end
+		legal_in.keys.join(" ")
+	end
+
 	def call(query)
 		url = search_query(query)
 		#method that returns an array of hashes, each element in the hash represents 
 		response = RestClient.get(url)
 		json_collection = JSON.parse(response)
 
-
 		cards = json_collection["data"]
 
+		results = {}
 		collection = []
-
+		if !!json_collection["next_page"]
+			results[:next_page] =  json_collection["next_page"]
+			results[:has_more] = true
+			results[:total_cards] = json_collection["total_cards"]
+		end
 		cards.each do |card|
 			card_hash = {}
 			card_hash[:scryfall_id] = card["id"]
@@ -49,11 +61,13 @@ class ScryfallWrapper
 			card_hash[:price] = card["usd"]
 			card_hash[:power] = card["power"]
 			card_hash[:toughness] = card["toughness"]
+			card_hash[:formats] = format_finder(card["legalities"])
 			card_hash.delete_if { |key, value| value == nil || value == ""  }
 			collection << card_hash
 		end
 
-		collection
+		results[:collection] = collection
+		results
 
 	end
 

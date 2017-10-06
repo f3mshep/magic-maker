@@ -14,6 +14,7 @@ class CardTable < ActiveRecord::Migration[5.1]
   		t.string :price
   		t.string :power
   		t.string :toughness
+      t.string :formats
   	end
   end
 end

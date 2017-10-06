@@ -5,7 +5,9 @@ class Card < ActiveRecord::Base
   end
 
   def self.new_from_collection(card_arr)
-  	card_arr.collect {|card|Card.new(card)}
+  	card_arr.collect do |card|
+  		Card.new(card)
+  	end
   end
 
 end

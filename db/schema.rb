@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20171005195201) do
     t.string "price"
     t.string "power"
     t.string "toughness"
+    t.string "formats"
   end
 
 end
