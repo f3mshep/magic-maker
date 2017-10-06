@@ -1,7 +1,5 @@
 <body>
 
-	<%binding.pry%>
-
 	<% @collection.each do |card| %>
 		<div>
 			<h4><%= card.name %></h4>
@@ -10,7 +8,9 @@
 	<%end%>
 	
 	<%if @pagination%>
-		<>
+		<% @pagination.each do |number, url| %>
+			<a href="http://127.0.0.1:9393/cards/search/<%=url%>" class="btn btn-info" role="button">Page <%= number %></a>
+		<%end%>
 	<% end %>
 
 </body>
