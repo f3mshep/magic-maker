@@ -20,15 +20,17 @@ class ApplicationController < Sinatra::Base
   get '/cards/search/:query' do
     new_search = ScryfallWrapper.new
     results = new_search.call(params[:query])
+
     if params[:query].include?("&page=") || results[:has_more] == true
       total_pages = results[:total_cards] / 175
       page = 1
+      @pagination = {}
       total_pages.times do
-        binding.pry
         @pagination[page] = "#{results[:og_query]}&page=#{page}"
         page += 1
       end
     end
+
   	@collection = Card.new_from_collection(results[:collection])
   	erb :'/cards/results'
   end

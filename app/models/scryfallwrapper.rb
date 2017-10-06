@@ -31,6 +31,15 @@ class ScryfallWrapper
 		legal_in.keys.join(" ")
 	end
 
+	def current_page(query)
+		current_page = query.scan(/\&page=(\d*)/)
+		if current_page.first.nil?
+			1
+		else
+			current_page.flatten.first.to_i
+		end
+	end
+
 	def call(query)
 		url = search_query(query)
 		#method that returns an array of hashes, each element in the hash represents 
@@ -45,7 +54,8 @@ class ScryfallWrapper
 			results[:next_page] =  json_collection["next_page"]
 			results[:has_more] = true
 			results[:total_cards] = json_collection["total_cards"]
-			results[:og_query] ||= binding.pry
+			results[:og_query] ||= query.gsub(/(&page=\d+)/, '')
+			results[:current_page] = current_page(query)
 		end
 		cards.each do |card|
 			card_hash = {}
