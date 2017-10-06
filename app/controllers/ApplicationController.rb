@@ -20,7 +20,7 @@ class ApplicationController < Sinatra::Base
   get '/cards/search/:query' do
   	new_search = ScryfallWrapper.new
   	cards = new_search.call(params[:query])
-  	@collection = Card.create_or_find_from_collection(cards)
+  	@collection = Card.new_from_collection(cards)
   	erb :'/cards/results'
   end
 
