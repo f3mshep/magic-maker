@@ -7,13 +7,9 @@
 			<label>Card Search</label><input name="query" placeholder="Card Name" type="text">
 			<br>
 			<!-- Change this to a bootstrap dropdown --> 
-			<label>Order By: <input name="order" value="&order=usd" type="radio">Price <input name="order" value="&order=cmc" type="radio">CMC <input name="order" value="&order=edhrec" type="radio">Highest Rated </label><br>
-			<label>Color <input type="checkbox" name=color value="c%3Aw">White <input type="checkbox" name=color value="c%3Au">Blue
-			<input type="checkbox" name=color value="c%3Ab">Black<input type="checkbox" name=color value="c%3Ag">Red <input type="checkbox" name=color value="c%3Ag">Green</label>
-			<br>
-			<label>Choose a Card Type</label><select name="card_type">
-				
-			</select>
+			<label>Order By: <input type="radio" name="order" value="&order=name">Name <input name="order" value="&order=usd" type="radio">Price <input name="order" value="&order=cmc" type="radio">CMC <input name="order" value="&order=edhrec" type="radio">Highest Rated </label><br>
+			<label>Color <input type="checkbox" name="color[]" value="w">White <input type="checkbox" name="color[]" value="u">Blue
+			<input type="checkbox" name="color[]" value="b">Black<input type="checkbox" name="color[]" value="r">Red <input type="checkbox" name="color[]" value="g">Green <input type="checkbox" name="color[]" value="m">Multicolor <input type="checkbox" name="color[]" value="del">Exclude other colors</label>
 			<br>
 			<label>Set</label>
 			<input list="set" placeholder="Choose a Set" name="set">
@@ -451,9 +447,9 @@
 					<option value="tzen">Zendikar Tokens (TZEN)</option>
 				</datalist>
 			<br>
-			<label>Creature Type</label>
-			<input list="creature" placeholder="Choose a Creature Type" name="creature type">
-				<datalist id="creature" placeholder="Creature Type" >
+			<label>Type Line</label>
+			<input list="type_line" placeholder="Choose a Card Type" name="type_line">
+				<datalist id="type_line" placeholder="Card Type" >
 					<option value="aetherborn">Aetherborn</option>
 					<option value="ajani">Ajani</option>
 					<option value="ally">Ally</option>

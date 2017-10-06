@@ -4,10 +4,10 @@ require 'json'
 class ScryfallWrapper
 	include Searchable
 
-	SEARCH_URL = 'https://api.scryfall.com/cards/search?q='
+	SEARCH_URL = 'https://api.scryfall.com/cards/search?'
 
 	def search_query(query)
-  	SEARCH_URL + input_parser(query)
+  	SEARCH_URL + query
 		#url = base_url + order + query
 		#colon =  %3A
 		#spaces = +

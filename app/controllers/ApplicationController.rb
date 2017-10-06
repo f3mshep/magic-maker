@@ -18,7 +18,6 @@ class ApplicationController < Sinatra::Base
   #cards
 
   get '/cards/search/:query' do
-   	binding.pry
   	new_search = ScryfallWrapper.new
   	cards = new_search.call(params[:query])
   	@collection = Card.create_or_find_from_collection(cards)
@@ -30,7 +29,8 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/cards/search' do
-  	query = input_parser(params[:query])
+    
+  	query = query_generator(params)
   	#include more variables here that can be tacked on to #query such as order and type options
   	redirect "/cards/search/#{query}"
   end
