@@ -1,15 +1,16 @@
 <body>
 
 	<% @collection.each do |card| %>
-		<div>
-			<h4><%= card.name %></h4>
-			<img src="<%=card.image_url%>" alt="<%=card.name%>">
+		<div style="display: inline;">
+			<a  href="/cards/<%= card.slug %>">
+				<img src="<%=card.image_url%>" style="width: 33%" alt="<%=card.name%>">
+			</a>
 		</div>
 	<%end%>
 	
 	<%if @pagination%>
 		<% @pagination.each do |number, url| %>
-			<a href="http://127.0.0.1:9393/cards/search/<%=url%>" class="btn btn-info" role="button">Page <%= number %></a>
+			<a href="/cards/search/<%=url%>" class="btn btn-info" role="button">Page <%= number %></a>
 		<%end%>
 	<% end %>
 
