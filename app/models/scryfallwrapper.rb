@@ -45,6 +45,7 @@ class ScryfallWrapper
 			results[:next_page] =  json_collection["next_page"]
 			results[:has_more] = true
 			results[:total_cards] = json_collection["total_cards"]
+			results[:og_query] ||= binding.pry
 		end
 		cards.each do |card|
 			card_hash = {}

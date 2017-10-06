@@ -1,11 +1,13 @@
 <body>
+
+	<%binding.pry%>
+
 	<% @collection.each do |card| %>
 		<div>
 			<h4><%= card.name %></h4>
 			<img src="<%=card.image_url%>" alt="<%=card.name%>">
 		</div>
 	<%end%>
-	<%if !!@next_page %>
-		
-	<% end %>
+	
+
 </body>
