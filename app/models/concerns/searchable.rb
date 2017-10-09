@@ -1,5 +1,8 @@
 module Searchable
 
+	class String
+	end
+
 	def query_generator(params)
 		query = text_parser(params[:query]) 
 		order = order_parser(params[:order])

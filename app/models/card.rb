@@ -21,6 +21,7 @@ class Card < ActiveRecord::Base
         card = items
       end
       amount.times do
+        binding.pry
         collection << Card.find_or_create_by_slug(card.to_slug)
       end
     end
@@ -42,9 +43,11 @@ class Card < ActiveRecord::Base
   end
 
   def slug
+    #Takes object, returns the name of the object as a slug
 		input = self.name.downcase.split.collect{|string|string.scan(/[a-z0-9]/)}
 		input.collect {|arr|arr.join("")}.join('-')
 	end
+
 
 	def self.find_by_slug(slug)
 		collection = self.all

@@ -9,7 +9,7 @@ class DeckController < ApplicationController
 	end
 
 	post '/decks/new' do
-		collection = Card.create_from_decklist(params[:decklist])
+		decklist = Card.create_from_decklist(params[:cards])
 	end
 
 end
