@@ -10,6 +10,7 @@ class DeckController < ApplicationController
 
 	post '/decks/new' do
 		decklist = Card.create_from_decklist(params[:cards])
+		binding.pry
 	end
 
 end
