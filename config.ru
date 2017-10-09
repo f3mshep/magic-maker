@@ -9,3 +9,4 @@ end
 use Rack::MethodOverride
 run ApplicationController
 use CardController
+use DeckController

@@ -30,7 +30,7 @@ module Searchable
 
 	def text_parser(query)
 		input = query.downcase.split.collect{|string|string.scan(/[a-z]/)}
-  		input = input.collect {|arr|arr.join("")}.join('+')
+  	input = input.collect {|arr|arr.join("")}.join('+')
   		"q=" + input
 	end
 

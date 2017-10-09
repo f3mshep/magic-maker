@@ -40,6 +40,12 @@ class ScryfallWrapper
 		end
 	end
 
+	def find_card_by_slug(slug)
+		query = "q=" + slug
+		results = self.call(query)
+		results[:collection].first
+	end
+
 	def call(query)
 		url = search_query(query)
 		#method that returns an array of hashes, each element in the hash represents 
