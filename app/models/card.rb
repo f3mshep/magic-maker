@@ -1,5 +1,8 @@
 class Card < ActiveRecord::Base
 
+  include Sluggable::InstanceMethods
+  extend Sluggable::ClassMethods
+
   has_many :deck_cards
   has_many :decks, through: :deck_cards
 
@@ -40,18 +43,6 @@ class Card < ActiveRecord::Base
   		Card.new(card)
   	end
   end
-
-  def slug
-    #Takes object, returns the name of the object as a slug
-		input = self.name.downcase.split.collect{|string|string.scan(/[a-z0-9-]/)}
-		input.collect {|arr|arr.join("")}.join('-')
-	end
-
-
-	def self.find_by_slug(slug)
-		collection = self.all
-		collection.find {|instance| instance.slug == slug}
-	end
 
   def self.find_or_create_by_slug(slug)
     results = find_by_slug(slug)
