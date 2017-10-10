@@ -8,23 +8,28 @@ class DeckController < ApplicationController
 	end
 
 	get '/decks/new' do
+		redirect '/login' if !logged_in?
 		erb :'/decks/new'
 	end
 
 	post '/decks/new' do
+		redirect '/login' if !logged_in?
 		decklist = Card.create_from_decklist(params[:cards])
-		deck = Deck.create(name: params[:name], format: params[:format], description: params[:description], )
+		deck = Deck.create(name: params[:name], format: params[:format], description: params[:description], user: current_user)
 		deck.cards << decklist
 		redirect "/decks/#{deck.slug}/edit"
 	end
 
 	get '/decks/:name/edit' do
+		redirect '/login' if !logged_in?
 		@deck = Deck.find_by_slug(params[:name])
+		redirect '/login' if current_user != @deck.user
 		erb :'/decks/edit'
 	end
 
 	post '/decks/:name/edit' do
 		@deck = Deck.find_by_slug(params[:name])
+		redirect '/login' if current_user != @deck.user
 		decklist = Card.create_from_decklist(params[:cards])
 		@deck.update(description: params[:description], format: params[:format])
 		
@@ -40,6 +45,7 @@ class DeckController < ApplicationController
 
 	delete '/decks/:name/delete' do
 		@deck = Deck.find_by_slug(params[:name])
+		redirect '/login' if current_user != @deck.user
 		@deck.destroy
 		redirect '/decks'
 	end

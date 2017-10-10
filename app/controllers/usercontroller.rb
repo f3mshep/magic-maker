@@ -16,10 +16,10 @@ class UserController < ApplicationController
 	end
 
 	post '/login' do
-		user = User.find_by(username: params[:username])
+		user = User.find_by(name: params[:username])
 		if user && user.authenticate(params[:password])
 		session[:user_id] = user.id
-		flash[:success] = "Welcome, #{user.username}"
+		flash[:success] = "Welcome, #{user.name}"
 		redirect '/'
 		#set up flash message to alert user they logged in
 		else
@@ -51,14 +51,5 @@ class UserController < ApplicationController
 		@user = find_by_slug(params[:slug])
 		erb :'/users/show'
 	end
-
-
-    def logged_in?
-    	!!session[:user_id]
-    end
-
-    def current_user
-    	User.find(session[:user_id])
-    end
 
 end
