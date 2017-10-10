@@ -1,0 +1,9 @@
+<form action="/decks/<%=@deck.slug%>/edit" method="post">
+	<div class="form-group">
+		<h3><%=@deck.name%></h3>
+		
+		<textarea class="form-control" name="description" name="" id="" cols="30" rows="10"><%= @deck.description%></textarea>
+		<textarea class="form-control" name="cards" name="" id="" cols="30" rows="10"><%=@deck.decklist%></textarea>
+		<input type="submit" class="btn btn-primary" value="Update Deck">
+	</div>
+</form>

@@ -16,8 +16,20 @@ class DeckController < ApplicationController
 	end
 
 	get '/decks/:name/edit' do
-		deck = Deck.find_by_slug(params[:name])
-		binding.pry
+		@deck = Deck.find_by_slug(params[:name])
+		erb :'/decks/edit'
 	end
+
+	post '/decks/:name/edit' do
+
+		@deck = Deck.find_by_slug(params[:name])
+		decklist = Card.create_from_decklist(params[:cards])
+		@deck.update(description: params[:description])
+		
+		@deck.cards.clear
+		@deck.cards << decklist
+		redirect "/decks/#{@deck.slug}/edit"
+	end
+
 
 end

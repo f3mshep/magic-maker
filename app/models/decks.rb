@@ -13,7 +13,12 @@ class Deck < ActiveRecord::Base
 		cards.each do |card|
 			card_count[card] += 1
 		end
-		binding.pry
+		
+		decklist = ""
+		card_count.each do |card, amount|
+			decklist << "#{amount}x #{card}\n"
+		end
+		decklist
 	end
 
 end
