@@ -12,14 +12,15 @@
 </div>
 
 <!-- options for the owner to interact with the deck -->
-
-<div class="container">
-	<a class="btn btn-primary" href="/decks/<%=@deck.slug%>/edit">Edit</a>
-	<form method="post" action="/decks/<%=@deck.slug%>/delete">
-		<input type="hidden" name="_method" value="DELETE">
-		<button class="btn-secondary btn">Delete</button>
-	</form>
-</div>
+<%if @user == @deck.user%>
+	<div class="container">
+		<form method="post" action="/decks/<%=@deck.slug%>/delete">
+			<input type="hidden" name="_method" value="DELETE">
+			<a class="btn btn-primary" href="/decks/<%=@deck.slug%>/edit">Edit</a>
+			<button class="btn-secondary btn">Delete</button>
+		</form>
+	</div>
+<%end%>
 
 <div class="container">
 	<!-- these are all the comments -->
@@ -28,6 +29,13 @@
 		<div class="container">
 			<h5><%="#{comment.created_at.localtime} #{comment.user.name} posted:"%></h5>
 			<p><%=comment.content%></p>
+			<%if comment.user == @user%>
+				<form method="post" action="/comments/<%=comment.id%>/edit">
+					<input type="hidden" name="_method" value="DELETE">
+					<a class="btn btn-primary" href="/comments/<%=comment.id%>/edit">Edit</a>
+					<button class="btn-secondary btn">Delete</button>
+				</form>
+			<%end%>
 		</div>
 	<%end%>
 </div>
