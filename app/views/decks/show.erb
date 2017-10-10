@@ -1,5 +1,6 @@
 <h3> <%=@deck.name%> </h3>
 
+<!-- lists info about deck here -->
 
 <div class="container">
 	<h4>Lands</h4>
@@ -10,6 +11,8 @@
 	<p><%=@deck.cards_of_type("spell")%></p>
 </div>
 
+<!-- options for the owner to interact with the deck -->
+
 <div class="container">
 	<a class="btn btn-primary" href="/decks/<%=@deck.slug%>/edit">Edit</a>
 	<form method="post" action="/decks/<%=@deck.slug%>/delete">
@@ -17,3 +20,28 @@
 		<button class="btn-secondary btn">Delete</button>
 	</form>
 </div>
+
+<div class="container">
+	<!-- these are all the comments -->
+	<h4>Comments</h4>
+	<%@deck.comments.each do |comment|%>
+		<div class="container">
+			<h5><%="#{comment.created_at.localtime} #{comment.user.name} posted:"%></h5>
+			<p><%=comment.content%></p>
+		</div>
+	<%end%>
+</div>
+
+<%if @user%>
+<!-- Create new comment area-->	
+	<div class="container">
+		<div class="widget-area no-padding blank">
+				<form method="post" action="/comments/new">
+					<input type="hidden" name="user" value="<%=@user.slug%>">
+					<input type="hidden" name="deck" value="<%=@deck.slug%>">
+					<textarea placeholder="New comment" name="comment"></textarea>
+					<button type="submit" class="btn btn-primary">Add Comment</button>
+				</form>
+		</div>
+	</div>
+<%end%>

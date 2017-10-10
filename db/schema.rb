@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171010173409) do
+ActiveRecord::Schema.define(version: 20171010194608) do
 
   create_table "cards", force: :cascade do |t|
     t.string "scryfall_id"
@@ -27,6 +27,16 @@ ActiveRecord::Schema.define(version: 20171010173409) do
     t.string "power"
     t.string "toughness"
     t.string "formats"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.string "content"
+    t.integer "user_id"
+    t.integer "deck_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["deck_id"], name: "index_comments_on_deck_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "deck_cards", force: :cascade do |t|

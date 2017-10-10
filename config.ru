@@ -11,3 +11,4 @@ run ApplicationController
 use CardController
 use DeckController
 use UserController
+use CommentController

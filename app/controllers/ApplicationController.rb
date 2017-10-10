@@ -22,6 +22,7 @@ class ApplicationController < Sinatra::Base
 
   #main site navigation
   get '/' do
+    erb :'index'
   end
 
   #cards

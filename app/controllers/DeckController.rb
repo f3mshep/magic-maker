@@ -39,6 +39,7 @@ class DeckController < ApplicationController
 	end
 
 	get '/decks/:name' do
+		@user = current_user
 		@deck = Deck.find_by_slug(params[:name])
 		erb :"/decks/show"
 	end
