@@ -4,12 +4,13 @@
 		
 		<textarea class="form-control" name="description" name="" id="" cols="30" rows="10"><%= @deck.description%></textarea>
 		<textarea class="form-control" name="cards" name="" id="" cols="30" rows="10"><%=@deck.decklist%></textarea>
-		<select>
-			<option value="" disabled selected>Select Format</option>
-			<option value="standard">Standard</option>
-			<option value="modern">Modern</option>
-			<option value="legacy">Legacy</option>
-			<option value="edh">EDH</option>
+		<select name="format">
+			
+			<option <%='selected' if @deck.format.include?("casual")%> value="casual">Casual</option>
+			<option <%='selected' if @deck.format.include?("standard")%> value="standard">Standard</option>
+			<option <%='selected' if @deck.format.include?("modern")%> value="modern">Modern</option>
+			<option <%='selected' if @deck.format.include?("legacy")%> value="legacy">Legacy</option>
+			<option <%='selected' if @deck.format.include?("edh")%> value="edh">EDH</option>
 		</select>
 		<input type="submit" class="btn btn-primary" value="Update Deck">
 		 <a href="/decks/<%=@deck.slug%>" class="btn btn-secondary"> Finish Editing</a>
