@@ -31,5 +31,10 @@ class DeckController < ApplicationController
 		redirect "/decks/#{@deck.slug}/edit"
 	end
 
+	get '/decks/:name' do
+		@deck = Deck.find_by_slug(params[:name])
+		erb :"/decks/show"
+	end
+
 
 end

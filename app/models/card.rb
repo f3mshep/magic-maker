@@ -15,7 +15,7 @@ class Card < ActiveRecord::Base
     collection = []
 
     decklist.split("\r\n").each do |line_item|
-      items = line_item.downcase.split("x ")
+      items = line_item.downcase.split(" ", 2)
       if items.size > 1
         amount = items.first.to_i
         card = items.last

@@ -21,4 +21,14 @@ class Deck < ActiveRecord::Base
 		decklist
 	end
 
+	def card_types(type)
+		case type
+		when "creature"
+		when ""
+		when condition
+		else
+		end
+		
+	end
+
 end
