@@ -1,8 +1,7 @@
 require './config/environment'
 
 class CardController < ApplicationController
-	include Searchable
-
+  
 	get '/cards/search/:query' do
   	new_search = ScryfallWrapper.new
   	results = new_search.call(params[:query])

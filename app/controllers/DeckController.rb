@@ -1,8 +1,6 @@
 require './config/environment'
 
 class DeckController < ApplicationController
-	
-	include Searchable
 
 	get '/decks' do
 		@decks = Deck.all
