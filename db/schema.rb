@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171009183026) do
+ActiveRecord::Schema.define(version: 20171010173409) do
 
   create_table "cards", force: :cascade do |t|
     t.string "scryfall_id"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20171009183026) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "format"
     t.index ["user_id"], name: "index_decks_on_user_id"
   end
 

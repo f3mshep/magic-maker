@@ -4,6 +4,10 @@ class DeckController < ApplicationController
 	
 	include Searchable
 
+	get '/decks' do
+		erb :'/decks/index'
+	end
+
 	get '/decks/new' do
 		erb :'/decks/new'
 	end
@@ -36,5 +40,10 @@ class DeckController < ApplicationController
 		erb :"/decks/show"
 	end
 
+	delete '/decks/:name/delete' do
+		@deck = Deck.find_by_slug(params[:name])
+		@deck.destroy
+		redirect '/decks'
+	end
 
 end

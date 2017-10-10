@@ -1,3 +1,19 @@
 <h3> <%=@deck.name%> </h3>
-<%binding.pry%>
-<h4></h4>
+
+
+<div class="container">
+	<h4>Lands</h4>
+	<p><%=@deck.cards_of_type("land")%></p>
+	<h4>Creatures</h4>
+	<p><%=@deck.cards_of_type("creature")%></p>
+	<h4>Spells</h4>
+	<p><%=@deck.cards_of_type("spell")%></p>
+</div>
+
+<div class="container">
+	<a class="btn btn-primary" href="/decks/<%=@deck.slug%>/edit">Edit</a>
+	<form method="post" action="/decks/<%=@deck.slug%>/delete">
+		<input type="hidden" name="_method" value="DELETE">
+		<button class="btn-secondary btn">Delete</button>
+	</form>
+</div>
