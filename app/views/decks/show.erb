@@ -9,6 +9,8 @@
 	<p><%=@deck.cards_of_type("creature")%></p>
 	<h4>Spells</h4>
 	<p><%=@deck.cards_of_type("spell")%></p>
+	<h4>Sideboard</h4>
+	<p><%=@deck.sideboard.decklist%></p>
 </div>
 
 <!-- options for the owner to interact with the deck -->

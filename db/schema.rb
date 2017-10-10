@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171010194608) do
+ActiveRecord::Schema.define(version: 20171010213404) do
 
   create_table "cards", force: :cascade do |t|
     t.string "scryfall_id"
@@ -54,6 +54,18 @@ ActiveRecord::Schema.define(version: 20171010194608) do
     t.datetime "updated_at", null: false
     t.string "format"
     t.index ["user_id"], name: "index_decks_on_user_id"
+  end
+
+  create_table "sideboard_cards", force: :cascade do |t|
+    t.integer "sideboard_id"
+    t.integer "card_id"
+    t.index ["card_id"], name: "index_sideboard_cards_on_card_id"
+    t.index ["sideboard_id"], name: "index_sideboard_cards_on_sideboard_id"
+  end
+
+  create_table "sideboards", force: :cascade do |t|
+    t.integer "deck_id"
+    t.index ["deck_id"], name: "index_sideboards_on_deck_id"
   end
 
   create_table "users", force: :cascade do |t|

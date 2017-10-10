@@ -6,6 +6,9 @@ class Card < ActiveRecord::Base
   has_many :deck_cards
   has_many :decks, through: :deck_cards
 
+  has_many :sideboard_cards
+  has_many :sideboards, through: :sideboard_cards
+
   def self.create_or_find_from_collection(card_arr)
     card_arr.collect {|card| Card.find_or_create_by(card)}
   end

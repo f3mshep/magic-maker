@@ -15,7 +15,10 @@ class DeckController < ApplicationController
 	post '/decks/new' do
 		redirect '/login' if !logged_in?
 		decklist = Card.create_from_decklist(params[:cards])
-		deck = Deck.create(name: params[:name], format: params[:format], description: params[:description], user: current_user)
+		sideboard = Sideboard.create
+		sidelist = Card.create_from_decklist(params[:sideboard])
+		sideboard.cards << sidelist
+		deck = Deck.create(name: params[:name], format: params[:format], description: params[:description], sideboard: sideboard, user: current_user)
 		deck.cards << decklist
 		redirect "/decks/#{deck.slug}/edit"
 	end

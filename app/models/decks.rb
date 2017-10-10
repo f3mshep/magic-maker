@@ -7,6 +7,7 @@ class Deck < ActiveRecord::Base
 	belongs_to :user
 	has_many :cards, through: :deck_cards
 	has_many :comments
+	has_one :sideboard
 
 	def decklist
 		cards = self.cards.collect {|card|card.name}

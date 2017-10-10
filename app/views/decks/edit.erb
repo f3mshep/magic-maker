@@ -4,6 +4,7 @@
 		
 		<textarea class="form-control" name="description" name="" id="" cols="30" rows="10"><%= @deck.description%></textarea>
 		<textarea class="form-control" name="cards" name="" id="" cols="30" rows="10"><%=@deck.decklist%></textarea>
+		<textarea class="form-control" name="sideboard" id="" cols="30" rows="10"><%=@deck.sideboard.decklist%></textarea>
 		<select name="format">
 			
 			<option <%='selected' if @deck.format.include?("casual")%> value="casual">Casual</option>
