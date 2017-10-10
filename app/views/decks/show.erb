@@ -27,7 +27,7 @@
 	<h4>Comments</h4>
 	<%@deck.comments.each do |comment|%>
 		<div class="container">
-			<h5><%="#{comment.created_at.localtime} #{comment.user.name} posted:"%></h5>
+			<h5><%="#{comment.created_at.localtime.pretty} #{comment.user.name} posted:"%></h5>
 			<p><%=comment.content%></p>
 			<%if comment.user == @user%>
 				<form method="post" action="/comments/<%=comment.id%>/edit">
