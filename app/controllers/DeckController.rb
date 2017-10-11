@@ -34,8 +34,11 @@ class DeckController < ApplicationController
 		@deck = Deck.find_by_slug(params[:name])
 		redirect '/login' if current_user != @deck.user
 		decklist = Card.create_from_decklist(params[:cards])
+		sidelist = Card.create_from_decklist(params[:sideboard])
+
 		@deck.update(description: params[:description], format: params[:format])
-		
+		@deck.sideboard.cards.clear
+		@deck.sideboard.cards << sidelist
 		@deck.cards.clear
 		@deck.cards << decklist
 		redirect "/decks/#{@deck.slug}/edit"

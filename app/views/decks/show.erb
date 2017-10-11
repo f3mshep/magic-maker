@@ -1,36 +1,79 @@
-<h3> <%=@deck.name%> </h3>
-
-<!-- lists info about deck here -->
-
-<div class="container">
-	<h4>Lands</h4>
-	<p><%=@deck.cards_of_type("land")%></p>
-	<h4>Creatures</h4>
-	<p><%=@deck.cards_of_type("creature")%></p>
-	<h4>Spells</h4>
-	<p><%=@deck.cards_of_type("spell")%></p>
-	<h4>Sideboard</h4>
-	<p><%=@deck.sideboard.decklist%></p>
-</div>
-
-<!-- options for the owner to interact with the deck -->
-<%if @user == @deck.user%>
-	<div class="container">
-		<form method="post" action="/decks/<%=@deck.slug%>/delete">
-			<input type="hidden" name="_method" value="DELETE">
-			<a class="btn btn-primary" href="/decks/<%=@deck.slug%>/edit">Edit</a>
-			<button class="btn-secondary btn">Delete</button>
-		</form>
+<br>
+<div class="container col-md-10 content-box">
+	<div class="container-fluid">
+		<h3 style="display: inline;"> <%=@deck.name%> </h3>
+		<!-- options for the owner to interact with the deck -->
+			<%if @user == @deck.user%>
+				<div style="display: inline;" class="container">
+					<form style="display: inline;" method="post" action="/decks/<%=@deck.slug%>/delete">
+						<input type="hidden" name="_method" value="DELETE">
+						<a class="btn btn-primary" href="/decks/<%=@deck.slug%>/edit">Edit</a>
+						<button class="btn-secondary btn">Delete</button>
+					</form>
+				</div>
+			<%end%>
+		 <h5>by <%=@deck.user.name%></h5>
 	</div>
-<%end%>
+<!-- lists info about deck here -->
+<hr>
+		<h4>Description</h4>
+			<br>
+		<p><%=@deck.description%></p>
 
-<div class="container">
+		<div class="row justify-content-start">
+			<div class="hover_img col-md-3">
+				<h4>Creatures</h4>
+				<%@deck.cards_of_type("creature").each do |card, amount|%>
+					<% card_info = Card.find_by_slug(card.to_slug)%>
+
+
+					<%="#{amount}x "%><a href="/cards/<%=card.to_slug%>"> <%="#{card}"%> <span><img src="<%=card_info.image_url%>" alt="<%=card%>" height="400" /></span></a><br>
+				<%end%>	
+			</div>
+
+			<div class="hover_img col-md-3">
+				<h4>Spells</h4>
+				<%@deck.cards_of_type("spell").each do |card, amount|%>
+					<% card_info = Card.find_by_slug(card.to_slug)%>
+
+					<%="#{amount}x "%><a href="/cards/<%=card.to_slug%>"> <%="#{card}"%> <span><img src="<%=card_info.image_url%>" alt="<%=card%>" height="400" /></span></a><br>
+				<%end%>
+			</div>
+
+			<div class="hover_img col-md-3">
+					<h4>Lands</h4>
+					<%@deck.cards_of_type("land").each do |card, amount|%>
+						<% card_info = Card.find_by_slug(card.to_slug)%>
+
+						<%="#{amount}x "%><a href="/cards/<%=card.to_slug%>"> <%="#{card}"%> <span><img src="<%=card_info.image_url%>" alt="<%=card%>" height="400" /></span></a><br>
+					<%end%>	
+			</div>
+			
+			<div class="hover_img col-md-3">
+				<h4>Sideboard</h4>
+				<%@deck.sideboard.card_hash.each do |card, amount|%>
+					<% card_info = Card.find_by_slug(card.to_slug)%>
+
+					<%="#{amount}x "%><a href="/cards/<%=card.to_slug%>"> <%="#{card}"%> <span><img src="<%=card_info.image_url%>" alt="<%=card%>" height="400" /></span></a><br>
+				<%end%>
+			</div>
+		</div> <!-- END OF COLUMN -->
+	</div> <!-- END OF  ROW -->
+
+</div>
+<br>
+
+<div class="container col-md-10 content-box">
 	<!-- these are all the comments -->
-	<h4>Comments</h4>
+	<div>
+		<h4 style="display: inline;">Comments</h4> <button type="button" data-toggle="modal" data-target="#leaveComment" style="display: inline;" class="btn btn-primary pull-right">Post a Comment</button>
+	</div>
+	
+	<br>
 	<%@deck.comments.each do |comment|%>
 		<div class="container">
-			<h5><%="#{comment.created_at.localtime.pretty} #{comment.user.name} posted:"%></h5>
 			<p><%=comment.content%></p>
+			<p><%="-#{comment.user.name} #{comment.created_at.localtime.pretty}"%></p>
 			<%if comment.user == @user%>
 				<form method="post" action="/comments/<%=comment.id%>/edit">
 					<input type="hidden" name="_method" value="DELETE">
@@ -39,19 +82,31 @@
 				</form>
 			<%end%>
 		</div>
+		<hr>
 	<%end%>
 </div>
 
-<%if @user%>
+
 <!-- Create new comment area-->	
-	<div class="container">
-		<div class="widget-area no-padding blank">
-				<form method="post" action="/comments/new">
-					<input type="hidden" name="user" value="<%=@user.slug%>">
-					<input type="hidden" name="deck" value="<%=@deck.slug%>">
-					<textarea placeholder="New comment" name="comment"></textarea>
-					<button type="submit" class="btn btn-primary">Add Comment</button>
-				</form>
-		</div>
-	</div>
-<%end%>
+<div class="modal fade" id="leaveComment" tabindex="-1" role="dialog" aria-labelledby="comment" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+				<div class="container">
+						<div class="widget-area no-padding blank">
+							<form method="post" action="/comments/new">
+							<input type="hidden" name="user" value="<%=@user.slug%>">
+							<input type="hidden" name="deck" value="<%=@deck.slug%>">
+							<textarea placeholder="New comment" name="comment"></textarea>
+							<button type="submit" class="btn btn-primary">Add Comment</button>
+						</form>
+					</div>
+				</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

@@ -1,0 +1,35 @@
+/*General Formatting*/
+
+body {
+  background-color: #5e35b1;
+  z-index: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+.content-box {
+	position: relative;
+	z-index: 10;
+	color: white;
+  padding-top:7px;
+  padding-bottom:7px;
+  background-color: #303030;
+  border-width: 1px;
+  border-radius: 5px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+/*Card Hover Image*/
+
+.hover_img a { 
+	position:relative;
+}
+
+.hover_img a span {
+	position:absolute;
+  display:none;
+  z-index:99; 
+}
+
+.hover_img a:hover span { 
+	display:inline-block;
+}
