@@ -35,6 +35,14 @@
 		<div class="col-md-6">
       <div class="col-md-12 content-box">
         <h3>Recent decks</h3>
+        <%@decks.each do |deck|%>
+          <div class="container">
+            <a href="/decks/<%=deck.slug%>"><h5><%="#{deck.name}"%></h5></a>
+            <h5><%="#{deck.format.capitalize} #{deck.color_identity}"%></h5>
+            <p><%="Created by #{deck.user.name}"%></p>
+          </div>
+          <hr>
+        <%end%>
       </div>
     </div>
     <div class="col-md-6">

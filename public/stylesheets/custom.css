@@ -70,9 +70,13 @@
     box-shadow: none, 0 0 0 3px rgba(134, 142, 150, 0.5) !important;
     }
 
-	input.form-control {
+	input.form-control, textarea.form-control {
 		color: white !important;
 	}
+
+  textarea.form-control {
+    background-color: #444444 !important;
+  }
 
   .nav-link {
     color: #f8ffe7 !important;

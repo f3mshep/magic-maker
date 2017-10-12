@@ -1,17 +1,73 @@
-<form action="/decks/new" method="post">
-	<div class="form-group">
-		<input class="form-control" name="name" placeholder="Deck Name" type="text">
-		<textarea class="form-control" name="description" placeholder="Deck Description" name="" id="" cols="30" rows="10"></textarea>
-		<textarea class="form-control" name="cards" placeholder="Enter card names here. One card per line." name="" id="" cols="30" rows="10"></textarea>
-		<textarea class="form-control" name="sideboard" placeholder="Enter sideboard card names here. One card per line." name="" id="" cols="30" rows="10"></textarea>
-		<select name="format">
-			<option value="" disabled selected>Select Format</option>
-			<option value="casual">Casual</option>
-			<option value="standard">Standard</option>
-			<option value="modern">Modern</option>
-			<option value="legacy">Legacy</option>
-			<option value="edh">EDH</option>
-		</select>
-		<input type="submit" class="btn btn-primary" value="Create Deck">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="/"> <img src="https://i.imgur.com/TOn9Mw5.png" width="40"> Magic Maker</a>
+  
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/cards/search">Card Search</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/decks/new">Build deck</a>
+      </li>
+    </ul>
+		<ul class="navbar-nav col-auto">
+			<li class="nav-item">
+        <a class="nav-link" href="#">Your account</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href= "/logout" >Sign out</a>
+      </li>
+		</ul>
+  </div>
+</nav>
+<br>
+<div class="container">
+	<div class="row justify-content-center">
+		<div class="col-md-10 content-box">
+			<form action="/decks/new" method="post">
+				<div class="row justify-content-center">
+					<div class="form-group col-md-10">
+						<h3>Deck info</h3>
+						<br>
+						<label>Deck name</label>
+						<input class="form-control" name="name" placeholder="New deck" type="text">
+						<label>Deck Description</label>
+						<textarea class="form-control" name="description" placeholder="Enter a description of your deck" cols="30" rows="4"></textarea>
+						<br>
+						<div class="row">
+						<div class="col-md-6">
+							<label for="">Main deck cards</label>
+							<textarea class="form-control" name="cards" placeholder="Enter card names here. One card per line." name="" id="" cols="45" rows="10"></textarea>
+						</div>
+						<div class="col-md-6">
+							<label for="">Sideboard cards</label>
+							<textarea class="form-control" name="sideboard" placeholder="Enter sideboard card names here. One card per line." name="" id="" cols="46" rows="10"></textarea>
+						</div>
+						</div>
+							<div class="col-md-4">
+								<br>
+								<label for="">Format</label>
+								<select class="form-control" name="format">
+									<option value="" disabled selected>Choose format</option>
+									<option value="casual">Casual</option>
+									<option value="standard">Standard</option>
+									<option value="modern">Modern</option>
+									<option value="legacy">Legacy</option>
+									<option value="edh">EDH</option>
+								</select>
+							</div>
+							<br>
+						<input type="submit" class="btn-material-second" value="Create Deck">
+					</div>
+				</div>
+			</form>
+		</div>
 	</div>
-</form>
+</div>

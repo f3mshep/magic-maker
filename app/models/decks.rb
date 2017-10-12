@@ -15,16 +15,28 @@ class Deck < ActiveRecord::Base
 		self.cards.each do |card|
 			cost += card.price.to_i
 		end
+		self.sideboard.cards.each do |card|
+			cost += card.price.to_i
+		end
 		cost
 	end
 
 	def color_identity
-		colors = []
+		the_order = ['White', 'Blue', 'Black' 'Red', 'Green']
+		color_matches = []
+
+		colors = {'{W}' =>'White','{U}' => 'Blue','{B}' => 'Black','{R}' => 'Red','{G}' => 'Green'}
 
 		self.cards.each do |card|
-			colors << card.color_identity
+			colors.each do |symbol, color|
+				next if card.mana_cost.nil?
+				if card.mana_cost.include?(symbol)
+					color_matches << color
+				end
+			end
 		end
-		colors.uniq
+		color_matches << "colorless" if color_matches.empty?
+		color_matches.uniq
 	end
 
 end

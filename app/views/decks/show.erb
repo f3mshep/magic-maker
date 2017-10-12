@@ -116,7 +116,7 @@
 <!-- Create new comment area-->	
 <div class="modal fade" id="leaveComment" tabindex="-1" role="dialog" aria-labelledby="comment" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
+    <div class="modal-content content-box">
       <div class="modal-body">
 				<div class="container">
 						<div class="form-group">
@@ -124,6 +124,7 @@
 							<input type="hidden" name="user" value="<%=@user.slug%>">
 							<input type="hidden" name="deck" value="<%=@deck.slug%>">
 							<textarea class="form-control" placeholder="New comment" name="comment"></textarea>
+							<br>
 							<button type="submit" class="btn-material-second">Add Comment</button>
 						</form>
 					</div>
