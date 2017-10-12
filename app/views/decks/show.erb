@@ -1,3 +1,20 @@
+
+<div class="container-fluid nav-box">
+	<div class="container">
+	<ul class="nav nav-tabs">
+	  <li class="nav-item">
+	    <a class="nav-link" href="#">Active</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" href="#">Link</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" href="#">Another link</a>
+	  </li>
+	</ul>
+	</div>
+</div>
+
 <br>
 <div class="container col-md-10 content-box">
 	<div class="container-fluid">
@@ -7,8 +24,8 @@
 				<div style="display: inline;" class="container">
 					<form style="display: inline;" method="post" action="/decks/<%=@deck.slug%>/delete">
 						<input type="hidden" name="_method" value="DELETE">
-						<a class="btn btn-primary" href="/decks/<%=@deck.slug%>/edit">Edit</a>
-						<button class="btn-secondary btn">Delete</button>
+						<a class="btn-material" href="/decks/<%=@deck.slug%>/edit">EDIT</a>
+						<button class="btn-material-second">Delete</button>
 					</form>
 				</div>
 			<%end%>
@@ -89,15 +106,15 @@
 
 <!-- Create new comment area-->	
 <div class="modal fade" id="leaveComment" tabindex="-1" role="dialog" aria-labelledby="comment" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-body">
 				<div class="container">
-						<div class="widget-area no-padding blank">
+						<div class="form-group">
 							<form method="post" action="/comments/new">
 							<input type="hidden" name="user" value="<%=@user.slug%>">
 							<input type="hidden" name="deck" value="<%=@deck.slug%>">
-							<textarea placeholder="New comment" name="comment"></textarea>
+							<textarea class="form-control" placeholder="New comment" name="comment"></textarea>
 							<button type="submit" class="btn btn-primary">Add Comment</button>
 						</form>
 					</div>
@@ -106,7 +123,6 @@
     </div>
   </div>
 </div>
-
 
 
 

@@ -1,14 +1,118 @@
+/*Nav Styling*/
+
+.nav {
+	background-color: #303030;
+	box-shadow: 3px black !important;
+}
+
+.nav-link {
+	color: white !important;
+}
+
+.nav-box{
+	position: static;
+	z-index: 0;
+	color: white;
+  background-color: #303030;
+  border-width: 1px;
+  box-shadow: 0 3px 5px rgba(0,0,0,0.19), 0 3px 3px rgba(0,0,0,0.23);
+}
+
+/*Overriding Bootstrap*/
+
+.btn-material:focus, .btn-material:hover {
+	text-decoration: none;
+	outline: 0;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+
+}
+
+.btn-material {
+	transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+	display: inline-block;
+  font-weight: 500;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  border: 2px solid transparent;
+  padding: 0.4rem 1rem;
+  font-size: .9em;
+  line-height: 1.25;
+  border-radius: 0.125rem;
+  color: white;
+  background-color: #484848 !important;
+  border-color: #484848 !important;
+   }
+
+ .btn-material:hover {
+    color: white;
+    background-color: #1c313a !important;
+    border-color: #1c313a !important;
+    box-shadow: none, 0 0 0 3px rgba(134, 142, 150, 0.5) !important;
+    }
+
+.btn-material-second:focus, .btn-material-second:hover {
+	text-decoration: none;
+	outline: 0;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+
+}
+
+.btn-material-second {
+	transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+	display: inline-block;
+  font-weight: 500;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  border: 2px solid transparent;
+  padding: 0.4rem 1rem;
+  font-size: .9em;
+  line-height: 1.25;
+  border-radius: 0.125rem;
+  color: white;
+  background-color: #009688 !important;
+  border-color: #009688 !important;
+   }
+
+ .btn-material-second:hover {
+    color: white;
+    background-color: #00796b !important;
+    border-color: #00796b !important;
+    box-shadow: none, 0 0 0 3px rgba(134, 142, 150, 0.5) !important;
+    }
+
 /*General Formatting*/
 
 body {
-  background-color: #5e35b1;
+  background-color: #546e7a;
   z-index: 0;
   font-family: 'Roboto', sans-serif;
 }
 
+h1,h2,h3,h4,h5 {
+	color: #819ca9;
+}
+
+a {
+	color: white;
+}
+
+a:hover {
+	color: white;
+}
+
+hr {
+	border-color: #819ca9;
+	color: #819ca9;
+	background-color: #819ca9;
+}
+
 .content-box {
-	position: relative;
-	z-index: 10;
+	position: static;
+	z-index: 0;
 	color: white;
   padding-top:7px;
   padding-bottom:7px;
@@ -21,15 +125,17 @@ body {
 /*Card Hover Image*/
 
 .hover_img a { 
+	overflow: hidden;
 	position:relative;
 }
 
 .hover_img a span {
 	position:absolute;
   display:none;
-  z-index:99; 
+  z-index:16777271; 
 }
 
-.hover_img a:hover span { 
+.hover_img a:hover span {
+
 	display:inline-block;
 }
