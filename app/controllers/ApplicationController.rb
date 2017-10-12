@@ -22,7 +22,17 @@ class ApplicationController < Sinatra::Base
 
   #main site navigation
   get '/' do
+    if logged_in?
+      redirect '/home'
+    end
     erb :'index'
+  end
+
+  get '/home' do
+    if !logged_in?
+      redirect '/login'
+    end
+    erb :'home'
   end
 
   #cards

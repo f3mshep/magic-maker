@@ -20,7 +20,7 @@ class UserController < ApplicationController
 		if user && user.authenticate(params[:password])
 		session[:user_id] = user.id
 		flash[:success] = "Welcome, #{user.name}"
-		redirect '/'
+		redirect '/home'
 		#set up flash message to alert user they logged in
 		else
 		flash[:error] = "Wrong username or password."
