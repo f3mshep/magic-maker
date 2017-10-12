@@ -24,8 +24,8 @@
 				<div style="display: inline;" class="container">
 					<form style="display: inline;" method="post" action="/decks/<%=@deck.slug%>/delete">
 						<input type="hidden" name="_method" value="DELETE">
-						<a class="btn-material" href="/decks/<%=@deck.slug%>/edit">EDIT</a>
-						<button class="btn-material-second">Delete</button>
+						<a class="btn-material-second" href="/decks/<%=@deck.slug%>/edit">EDIT</a>
+						<button class="btn-material">Delete</button>
 					</form>
 				</div>
 			<%end%>
@@ -94,8 +94,8 @@
 			<%if comment.user == @user%>
 				<form method="post" action="/comments/<%=comment.id%>/edit">
 					<input type="hidden" name="_method" value="DELETE">
-					<a class="btn btn-primary" href="/comments/<%=comment.id%>/edit">Edit</a>
-					<button class="btn-secondary btn">Delete</button>
+					<a class="btn-material-second" href="/comments/<%=comment.id%>/edit">Edit</a>
+					<button class="btn-material">Delete</button>
 				</form>
 			<%end%>
 		</div>
@@ -115,7 +115,7 @@
 							<input type="hidden" name="user" value="<%=@user.slug%>">
 							<input type="hidden" name="deck" value="<%=@deck.slug%>">
 							<textarea class="form-control" placeholder="New comment" name="comment"></textarea>
-							<button type="submit" class="btn btn-primary">Add Comment</button>
+							<button type="submit" class="btn-material-second">Add Comment</button>
 						</form>
 					</div>
 				</div>
