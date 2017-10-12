@@ -1,15 +1,37 @@
-<div class="container">
-	<div class="vertical-tweak row">
-				<div class="col-sm-8 col-sm-offset-2">
+<!-- <div class="container-fluid nav-box">
+	<div class="container">
+	<ul class="nav nav-tabs">
+	  <li class="nav-item">
+	    <a class="nav-link" href="#">Active</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" href="#">Link</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" href="#">Another link</a>
+	  </li>
+	</ul>
+	</div>
+</div> -->
+<br>
+<br>
+<div class="container col-sm-5 content-box">
+	<div class="row align-items-center justify-content-center">
+				<div class="col-sm-7 align-self-center">
 					<br>
-					<form action="/login" method="post">
-						<h3><strong>Please Sign in.</strong></h3>
-						<input placeholder="Account Name" class="form-control" id="username" type="text" name="username">
+					<form action="/login" method="post" style="text-align:center;">
+						<h3 style="text-align:center;"><strong>Login</strong></h3>
 						<br>
-						<input placeholder="Password" class="form-control" id="password" type="password" name="password">
+						<input style="text-align:center;" placeholder="Account Name" class="form-control" id="username" type="text" name="username">
 						<br>
-						<button class="btn btn-md btn-primary btn-block roundify" id="submit"  type="submit"> Sign In</button>
+						<input style="text-align:center;" placeholder="Password" class="form-control" id="password" type="password" name="password">
+						<br>
+						<button class="btn-material-second btn-block"  id="submit"  type="submit"> Sign In</button>
 					</form>
+					<br>
+					<div style="text-align:center; ">
+						<a href="/signup">First time here? <strong>Sign up</strong></a>
+					</div>
 					<br>
 				</div>
 	</div>

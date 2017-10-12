@@ -45,12 +45,14 @@ class DeckController < ApplicationController
 	end
 
 	get '/decks/:name' do
+		redirect '/login' if !logged_in?
 		@user = current_user
 		@deck = Deck.find_by_slug(params[:name])
 		erb :"/decks/show"
 	end
 
 	delete '/decks/:name/delete' do
+		redirect '/login' if !logged_in?
 		@deck = Deck.find_by_slug(params[:name])
 		redirect '/login' if current_user != @deck.user
 		@deck.destroy

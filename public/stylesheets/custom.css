@@ -86,7 +86,17 @@
     box-shadow: none, 0 0 0 3px rgba(134, 142, 150, 0.5) !important;
     }
 
+	input.form-control {
+		color: white !important;
+	}
+
 /*General Formatting*/
+
+.header-text {
+	color: white;
+	font-size: 4.5em;
+	font-family: 'Lato', sans-serif;
+}
 
 body {
   background-color: #546e7a;
