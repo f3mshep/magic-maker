@@ -32,6 +32,8 @@ class ApplicationController < Sinatra::Base
     if !logged_in?
       redirect '/login'
     end
+    @comments = Comment.last(5)
+    binding.pry
     erb :'home'
   end
 

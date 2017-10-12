@@ -1,22 +1,6 @@
 /*Nav Styling*/
 
-.nav {
-	background-color: #303030;
-	box-shadow: 3px black !important;
-}
 
-.nav-link {
-	color: white !important;
-}
-
-.nav-box{
-	position: static;
-	z-index: 0;
-	color: white;
-  background-color: #303030;
-  border-width: 1px;
-  box-shadow: 0 3px 5px rgba(0,0,0,0.19), 0 3px 3px rgba(0,0,0,0.23);
-}
 
 /*Overriding Bootstrap*/
 
@@ -89,6 +73,14 @@
 	input.form-control {
 		color: white !important;
 	}
+
+  .nav-link {
+    color: #f8ffe7 !important;
+  }
+
+  .nav-link:hover {
+    color:#00796b !important;
+  }
 
 /*General Formatting*/
 
