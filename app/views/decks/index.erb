@@ -1,10 +1,26 @@
-<h3>Decks</h3>
-
-<%@decks.each do |deck|%>
-
-	<div class="container">
-		<a href="/decks/<%=deck.slug%>"><%=deck.name%></a>
-		<%=deck.format%>
-	</div>
-	
-<%end%>
+<div class="container">
+  <div class="row justify-content-center">
+      <div class="col-md-10 content-box">
+    <%@decks.each do |deck|%>
+      <div class="container">
+      <div class="row">
+        <div class="col-md-4 mr-auto">
+          <a href="/decks/<%=deck.slug%>"><h5><%="#{deck.name} "%></h5></a>
+          <% deck.color_identity.each do |color| %>
+            <img src="<%=color.values.first%>" width="15" alt="<%=color.keys.first%>">
+          <%end%>
+        </div>
+        <div class="col-md-4 col-auto">
+          <h5><%="#{deck.format.capitalize}"%></h5>
+          <p><%="$#{deck.price}"%></p>
+        </div>
+      </div>
+        <div class="col-md-6">
+          <p><%="Created by #{deck.user.name}"%></p>
+        </div>
+      </div>
+      <hr>
+    <%end%>
+    </div>
+  </div>
+</div>

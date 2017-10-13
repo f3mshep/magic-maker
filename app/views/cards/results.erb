@@ -1,46 +1,40 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="/"> <img src="https://i.imgur.com/TOn9Mw5.png" width="40"> Magic Maker</a>
-  
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/cards/search">Card Search</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/decks/new">Build deck</a>
-      </li>
-    </ul>
-		<ul class="navbar-nav col-auto">
-			<li class="nav-item">
-        <a class="nav-link" href="#">Your account</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href= "/logout" >Sign out</a>
-      </li>
-		</ul>
-  </div>
-</nav>
-
-<br>
 <div class="container">
 	<% @collection.each do |card| %>
 		<div style="display: inline;">
 			<a  href="/cards/<%= card.slug %>">
-				<img src="<%=card.image_url%>" style="width: 23%" alt="<%=card.name%>">
+				<img src="<%=card.image_url%>" style="width: 24%; border-radius: 10px; margin: 2px;" alt="<%=card.name%>">
 			</a>
 		</div>
 	<%end%>
-	
-	<%if @pagination%>
-		<% @pagination.each do |number, url| %>
-			<a href="/cards/search/<%=url%>" class="btn btn-info" role="button">Page <%= number %></a>
-		<%end%>
-	<% end %>
 </div>
+
+	<%if @pagination%>
+	<br>
+		<nav class="navbar navbar-static-bottom navbar-dark bg-dark">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6">
+			<ul class="pagination">
+				<%if @prev_page%>
+					<li class="page-item">
+						<a href="<%=@prev_page%>" class="page-link">Previous</a>
+					</li>
+				<%end%>
+				<% @pagination.each do |number, url| %>
+					<li class="page-item">
+						<a href="/cards/search/<%=url%>" class="page-link"><%= number %></a>
+					</li>
+				<%end%>
+				<%if @next_page%>
+					<li class="page-item">
+						<a href="<%=@next_page%>" class="page-link">Next</a>
+					</li>
+				<%end%>
+			</ul>
+				</div>
+			</div>
+		</div>
+		</nav>
+	<% end %>
+

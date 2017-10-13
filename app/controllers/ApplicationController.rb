@@ -32,8 +32,8 @@ class ApplicationController < Sinatra::Base
     if !logged_in?
       redirect '/login'
     end
-    @comments = Comment.first(3).reverse
-    @decks = Deck.last(3).reverse
+    @comments = Comment.first(6).reverse
+    @decks = Deck.last(7).reverse
     erb :'home'
   end
 

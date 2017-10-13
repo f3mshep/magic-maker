@@ -11,6 +11,10 @@ class CardController < ApplicationController
 	    	total_pages = results[:total_cards] / 175
 	      page = 1
 		    @pagination = {}
+        current_page = new_search.current_page(params[:query])
+        @current_page = "#{results[:og_query]}&page=#{current_page}"
+        @next_page = "#{results[:og_query]}&page=#{current_page + 1}" unless current_page == total_pages
+        @prev_page = "#{results[:og_query]}&page=#{current_page - 1}" unless current_page == 1
 		    total_pages.times do
 		      @pagination[page] = "#{results[:og_query]}&page=#{page}"
 		      page += 1

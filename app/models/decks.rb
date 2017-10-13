@@ -26,11 +26,18 @@ class Deck < ActiveRecord::Base
 	end
 
 	def average_cmc
-		cmc = 0.0
+		total_cmc = 0.0
 		self.cards.each do |card|
-			card.cmc += cmc
+			total_cmc = total_cmc + card.cmc
 		end
-		cmc
+		binding.pry
+		total_cmc / self.total_size
+	end
+
+	def total_size
+		sideboard_size = 0
+		sideboard_size = self.sideboard.cards.size unless self.sideboard.nil?
+		self.cards.size + sideboard_size
 	end
 
 	def display_text
