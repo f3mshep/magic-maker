@@ -7,7 +7,7 @@ class DeckController < ApplicationController
 		erb :'/decks/index'
 	end
 
-	get '/decks/:user' do
+	get '/:user/decks' do
 		@decks = User.find_by_slug(params[:user]).decks
 		erb :'/decks/index'
 	end

@@ -12,13 +12,25 @@ class Deck < ActiveRecord::Base
 
 	def price
 		cost = 0
+		return cost if self.cards.empty?
 		self.cards.each do |card|
+			next if card.nil?
 			cost += card.price.to_i
 		end
+		 return cost if sideboard.nil?
 		self.sideboard.cards.each do |card|
+			next if card.nil?
 			cost += card.price.to_i
 		end
 		cost
+	end
+
+	def average_cmc
+		cmc = 0.0
+		self.cards.each do |card|
+			card.cmc += cmc
+		end
+		cmc
 	end
 
 	def display_text
