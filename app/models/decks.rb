@@ -21,11 +21,14 @@ class Deck < ActiveRecord::Base
 		cost
 	end
 
+	def display_text
+		self.description.gsub(/\r\n/, '<br>')
+	end
+
 	def color_identity
-		the_order = ['White', 'Blue', 'Black' 'Red', 'Green']
 		color_matches = []
 
-		colors = {'{W}' =>'White','{U}' => 'Blue','{B}' => 'Black','{R}' => 'Red','{G}' => 'Green'}
+		colors = {'{W}' => {'White'=>'https://i.imgur.com/YavuZMp.png'},'{U}' => {'Blue' => 'https://i.imgur.com/8EN6jSv.png'},'{B}' => {'Black'=>'https://i.imgur.com/PMqnD7P.png'},'{R}' => {'Red' => 'https://i.imgur.com/aWGaaQx.png'},'{G}' => {'Green' => 'https://i.imgur.com/I5VJiVL.png'}}
 
 		self.cards.each do |card|
 			colors.each do |symbol, color|

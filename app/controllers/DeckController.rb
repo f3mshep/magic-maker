@@ -7,6 +7,11 @@ class DeckController < ApplicationController
 		erb :'/decks/index'
 	end
 
+	get '/decks/:user' do
+		@decks = User.find_by_slug(params[:user]).decks
+		erb :'/decks/index'
+	end
+
 	get '/decks/new' do
 		redirect '/login' if !logged_in?
 		erb :'/decks/new'
@@ -20,6 +25,7 @@ class DeckController < ApplicationController
 		sideboard.cards << sidelist
 		deck = Deck.create(name: params[:name], format: params[:format], description: params[:description], sideboard: sideboard, user: current_user)
 		deck.cards << decklist
+		flash[:success] = "Created #{deck.name}"
 		redirect "/decks/#{deck.slug}/edit"
 	end
 
@@ -41,6 +47,7 @@ class DeckController < ApplicationController
 		@deck.sideboard.cards << sidelist
 		@deck.cards.clear
 		@deck.cards << decklist
+		flash[:sucess] = "Deck #{deck.name} updated"
 		redirect "/decks/#{@deck.slug}/edit"
 	end
 

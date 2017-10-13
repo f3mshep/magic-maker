@@ -35,16 +35,8 @@
 							<div class="row justify-content-center">
 								<div class="col-md-10">
 							<form method="post" action="/cards/search">
-									<label>Card Search</label><input name="query" class="form-control" placeholder="Card Name" type="text">
 									<br>
-									<!-- Change this to a bootstrap dropdown --> 
-									<label>Order By 
-										<select name="order" class="form-control">
-											<option selected="selected" value="&order=name">Name</option>
-											<option value="&order=usd">Price</option>
-											<option value="&order=cmc">Converted mana cost</option>
-											<option value="&order=edhrec">Rating</option>
-										</select>
+									<label>Card Search</label><input name="query" class="form-control" placeholder="Card Name" type="text">
 										<br>
 									<div class="form-check-inline">
 										<label>Color identity</label>
@@ -74,7 +66,7 @@
 									<br>
 									<br>
 									<label>Set</label>
-									<input list="set" class="form-control" placeholder="Choose a Set" name="set">
+									<input list="set" class="form-control" placeholder="Begin typing or choose a set name" name="set">
 										<datalist id="set">
 											<option value="htr">2016 Heroes of the Realm (HTR)</option>
 											<option value="aer">Aether Revolt (AER)</option>
@@ -510,7 +502,7 @@
 										</datalist>
 									<br>
 									<label>Type Line</label>
-									<input list="type_line" class="form-control" placeholder="Choose a Card Type" name="type_line">
+									<input list="type_line" class="form-control" placeholder="Begin typing or choose a card type" name="type_line">
 										<datalist id="type_line" placeholder="Card Type" >
 											<option value="aetherborn">Aetherborn</option>
 											<option value="ajani">Ajani</option>
@@ -841,6 +833,18 @@
 											<option value="zubera">Zubera</option>
 										</datalist>
 									<br>
+   									<label>Order results by
+   										<br>
+   										<br>
+										<select name="order" class="custom-select">
+											<option selected="selected" value="&order=name">Name</option>
+											<option value="&order=usd">Price</option>
+											<option value="&order=cmc">Converted mana cost</option>
+											<option value="&order=edhrec">Rating</option>
+										</select>
+									</label>
+								
+									<br>	
 									<input type="submit" class="btn-material-second" value="Submit">
 							</form>
 							</div>

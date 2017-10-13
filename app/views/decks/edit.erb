@@ -54,7 +54,8 @@
 							<div class="col-md-4">
 								<br>
 								<label for="">Format</label>
-								<select class="form-control" name="format">
+								<br>
+								<select class="custom-select" name="format">
 									<option <%='selected' if @deck.format.include?("casual")%> value="casual">Casual</option>
 									<option <%='selected' if @deck.format.include?("standard")%> value="standard">Standard</option>
 									<option <%='selected' if @deck.format.include?("modern")%> value="modern">Modern</option>
