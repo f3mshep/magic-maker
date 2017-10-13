@@ -4,7 +4,12 @@ class CardController < ApplicationController
   
 	get '/cards/search/:query' do
   	new_search = ScryfallWrapper.new
-  	results = new_search.call(params[:query])
+    begin
+  	 results = new_search.call(params[:query])
+    rescue
+      flash[:error] = "No results found"
+      redirect '/cards/search'
+    end
 
 	  if params[:query].include?("&page=") || results[:has_more] == true
 	    if @pagination.nil?
