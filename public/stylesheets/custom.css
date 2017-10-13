@@ -94,10 +94,29 @@
 
 /*General Formatting*/
 
+img.magic-card-result { 
+  width: 24%;
+  border-radius: 10px;
+  margin: 2px;
+}
+
+  .zoom-img {
+  border-radius: 13px;
+  margin: 2px;
+}
+
 .header-text {
 	color: white;
 	font-size: 4.5em;
 	font-family: 'Lato', sans-serif;
+}
+
+.price-text {
+  color: white;
+  font-size: 1.2em;
+  font-family: sans-serif;
+  font-weight: bold;
+  text-align: center;
 }
 
 body {
@@ -146,7 +165,7 @@ hr {
 .hover_img a span {
 	position:absolute;
   display:none;
-  z-index:16777271; 
+  z-index:1000; 
 }
 
 .hover_img a:hover span {

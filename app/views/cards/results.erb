@@ -1,9 +1,11 @@
 
-<div class="container">
+<div class="container hover_img">
 	<% @collection.each do |card| %>
 		<div style="display: inline;">
 			<a  href="/cards/<%= card.slug %>">
-				<img src="<%=card.image_url%>" style="width: 24%; border-radius: 10px; margin: 2px;" alt="<%=card.name%>">
+				<img class="magic-card-result" src="<%=card.image_url%>"  alt="<%=card.name%>">
+				<span><img class="zoom-img" src="<%=card.image_url%>" alt="<%=card%>" height="500" />
+				</span>
 			</a>
 		</div>
 	<%end%>
@@ -22,9 +24,15 @@
 					</li>
 				<%end%>
 				<% @pagination.each do |number, url| %>
-					<li class="page-item">
-						<a href="/cards/search/<%=url%>" class="page-link"><%= number %></a>
-					</li>
+					<%if url == @current_page%>
+						<li class="page-item active">
+							<a href="/cards/search/<%=url%>" class="page-link"><%= number %></a>
+						</li>
+					<%else%>
+						<li class="page-item">
+							<a href="/cards/search/<%=url%>" class="page-link"><%= number %></a>
+						</li>
+					<%end%>
 				<%end%>
 				<%if @next_page%>
 					<li class="page-item">
