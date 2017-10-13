@@ -1,12 +1,55 @@
-<h3><%=@card.name%></h3>
-<img src="<%=@card.image_url%>">
-<h4>Type</h4>
-<h5><%=@card.card_type%></h5>
-<h4>Rules</h4>
-<h5><%=@card.rules%></h5>
-<h4>Flavor</h4>
-<h5><%= @card.flavor_text %></h5>
-<h4>Legalities</h4>
-<h5><%= @card.formats %></h5>
-<h4>Average Market Price</h4>
-<h5>$<%= @card.price %></h5>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="/"> <img src="https://i.imgur.com/TOn9Mw5.png" width="40"> Magic Maker</a>
+  
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/cards/search">Card Search</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/decks/new">Build deck</a>
+      </li>
+    </ul>
+		<ul class="navbar-nav col-auto">
+			<li class="nav-item">
+        <a class="nav-link" href="#">Your account</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href= "/logout" >Sign out</a>
+      </li>
+		</ul>
+  </div>
+</nav>
+
+<br>
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="row content-box">
+			<div class="col-md-5">
+				<img class="img-fluid" src="<%=@card.image_url%>">
+			</div>
+			<div class="col-md-5">
+				<h3><%=@card.name%></h3>
+				<h4>Type</h4>
+				<h5><%=@card.card_type%></h5>
+				<h4>Rules</h4>
+				<h5><%=@card.rules%></h5>
+				<h4>Flavor</h4>
+				<h5><%= @card.flavor_text %></h5>
+				<h4>Legalities</h4>
+				<h5><%= @card.formats %></h5>
+				<h4>Average Market Price</h4>
+				<h5>$<%= @card.price %></h5>
+			</div>
+			</div>
+		</div>
+	</div>
+</div>
