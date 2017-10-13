@@ -168,6 +168,10 @@ hr {
   z-index:1000; 
 }
 
+.crop {
+  border-radius: 20px;
+}
+
 .hover_img a:hover span {
 
 	display:inline-block;
