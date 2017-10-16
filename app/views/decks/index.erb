@@ -1,6 +1,13 @@
 <div class="container">
   <div class="row justify-content-center">
       <div class="col-md-10 content-box">
+      <%if @decks.empty?%>
+        <div class="text-center">
+          <br>
+          <h2>No decks in collection</h2>
+          <br>
+        </div>
+      <%end%>
     <%@decks.each do |deck|%>
       <div class="container">
       <div class="row">

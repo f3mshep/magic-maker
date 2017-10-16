@@ -1,10 +1,7 @@
 module Listable
 
-	#wishlist - make it use card objects instead of card names
-
-	def card_hash(card_arr=nil)
-		card_arr = self.cards if card_arr.nil?
-		cards = card_arr.collect {|card|card.name}
+	def card_hash(cards=nil)
+		cards = self.cards if cards.nil?
 		card_count = Hash.new(0)
 		cards.each do |card|
 			card_count[card] += 1
@@ -16,7 +13,7 @@ module Listable
 		card_hash = self.card_hash if card_hash.nil?
 		decklist = ""		
 		card_hash.each do |card, amount|		
-			decklist << "#{amount}x #{card}\n"		
+			decklist << "#{amount}x #{card.name}\n"		
 		end		
 		decklist
 	end

@@ -22,37 +22,28 @@
 			<div class="hover_img col-md-3">
 				<h4>Creatures</h4>
 				<%@deck.cards_of_type("creature").each do |card, amount|%>
-					<% card_info = Card.find_by_slug(card.to_slug)%>
-
-
-					<%="#{amount}x "%><a href="/cards/<%=card.to_slug%>"> <%="#{card}"%> <span><img class="crop" src="<%=card_info.image_url%>" alt="<%=card%>" height="400" /></span></a><br>
+					<%="#{amount}x "%><a href="/cards/<%=card.slug%>"> <%="#{card.name}"%> <span><img class="crop" src="<%=card.image_url%>" alt="<%=card.name%>" height="400" /></span></a><br>
 				<%end%>	
 			</div>
 
 			<div class="hover_img col-md-3">
 				<h4>Spells</h4>
 				<%@deck.cards_of_type("spell").each do |card, amount|%>
-					<% card_info = Card.find_by_slug(card.to_slug)%>
-
-					<%="#{amount}x "%><a href="/cards/<%=card.to_slug%>"> <%="#{card}"%> <span><img class="crop" src="<%=card_info.image_url%>" alt="<%=card%>" height="400" /></span></a><br>
+					<%="#{amount}x "%><a href="/cards/<%=card.slug%>"> <%="#{card.name}"%> <span><img class="crop" src="<%=card.image_url%>" alt="<%=card.name%>" height="400" /></span></a><br>
 				<%end%>
 			</div>
 
 			<div class="hover_img col-md-3">
 					<h4>Lands</h4>
 					<%@deck.cards_of_type("land").each do |card, amount|%>
-						<% card_info = Card.find_by_slug(card.to_slug)%>
-
-						<%="#{amount}x "%><a href="/cards/<%=card.to_slug%>"> <%="#{card}"%> <span><img class="crop" src="<%=card_info.image_url%>" alt="<%=card%>" height="400" /></span></a><br>
+						<%="#{amount}x "%><a href="/cards/<%=card.slug%>"> <%="#{card.name}"%> <span><img class="crop" src="<%=card.image_url%>" alt="<%=card.name%>" height="400" /></span></a><br>
 					<%end%>	
 			</div>
 			
 			<div class="hover_img col-md-3">
 				<h4>Sideboard</h4>
 				<%@deck.sideboard.card_hash.each do |card, amount|%>
-					<% card_info = Card.find_by_slug(card.to_slug)%>
-
-					<%="#{amount}x "%><a href="/cards/<%=card.to_slug%>"> <%="#{card}"%> <span><img class="crop" src="<%=card_info.image_url%>" alt="<%=card%>" height="400" /></span></a><br>
+					<%="#{amount}x "%><a href="/cards/<%=card.slug%>"> <%="#{card.name}"%> <span><img class="crop" src="<%=card.image_url%>" alt="<%=card.name%>" height="400" /></span></a><br>
 				<%end%>
 				<br>
 			</div>
