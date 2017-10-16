@@ -79,7 +79,25 @@ class DeckController < ApplicationController
 		user = @deck.user.name
 		redirect '/login' if current_user != @deck.user
 		@deck.destroy
-		redirect "#{user.slug}/decks/"
+		redirect "/#{@deck.user.slug}/decks/"
+	end
+
+	post '/decks/card/:slug/add' do
+		card = Card.find_by_slug(params[:slug]) 
+		deck = Deck.find_by_slug(params[:deck])
+		location = params[:location]
+		quantity = params[:quantity].to_i
+		if location == "side"
+			quantity.times do
+				deck.sideboard.cards << card
+			end
+		else
+			quantity.times do
+				deck.cards << card
+			end
+		end
+		flash[:success] = "#{card.name} added to  <a class='alert-link' href='/decks/#{deck.slug}/edit'>#{deck.name}</a>"
+		redirect "/cards/#{card.slug}"
 	end
 
 end

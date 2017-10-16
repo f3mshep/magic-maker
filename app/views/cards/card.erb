@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
-			<div class="row content-box">
+			<div class="row content-box justify-content-center">
 			<div class="col-md-5">
 				<br>
 				<img class="img-fluid" style="border-radius:25px; " src="<%=@card.image_url%>">
@@ -44,24 +44,28 @@
 		<div class="container">
 			<h4>Add to deck</h4>
 			<br>
-			<form class="form-group">
+			<form class="form-group" action="/decks/card/<%=@card.slug%>/add" method="post">
 				<div>
 					<label>
-						<select class="custom-select">
-							<%current_user.decks.each do |deck|%>
-								<option name="name"><%=deck.name%></option>
+						<select name="deck" class="custom-select">
+
+							<%current_user.decks.reverse.each do |deck|%>
+								<option value="<%=deck.slug%>"><%=deck.name%></option>
 							<%end%>
 						</select>
+						<select class="custom-select" name="location" >
+							<option value="main">Main deck</option>
+							<option value="side">Sideboard</option>
+						</select>
 					 </label>
+					 <br>
+					 <label>Amount</label>
+					 <br>
+					 <input type="number" style="width: 3em;" value="1" name="quantity" min="1" max="1000">
 				</div>
-				<div>
-					<label>
-						<input type="radio" name="location" value="main"> Main deck
-					</label>
-					<label>
-						<input type="radio" name="location" value="main"> Sideboard
-					</label>
-				</div>
+				<br>
+				<button class="btn-material-second my-2 my-sm-0" type="submit">Submit</button>
+	            <button data-dismiss="modal" class="btn-material my-2 my-sm-0" href="#">Cancel</button>
 			</form>
 		</div>
       </div>
