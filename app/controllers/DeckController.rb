@@ -79,7 +79,7 @@ class DeckController < ApplicationController
 		user = @deck.user.name
 		redirect '/login' if current_user != @deck.user
 		@deck.destroy
-		redirect "/#{@deck.user.slug}/decks/"
+		redirect "/#{@deck.user.slug}/decks"
 	end
 
 	post '/decks/card/:slug/add' do

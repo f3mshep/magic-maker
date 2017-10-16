@@ -30,7 +30,6 @@ class Deck < ActiveRecord::Base
 		self.cards.each do |card|
 			total_cmc = total_cmc + card.cmc
 		end
-		binding.pry
 		total_cmc / self.total_size
 	end
 

@@ -22,20 +22,19 @@ class Card < ActiveRecord::Base
       if items.size > 1
         amount = items.first.to_i
         card = items.last
+        return "Invalid entry, please enter an amount between 1-99" if amount > 99 || amount < 1
       else
         amount = 1
         card = items
       end
-      amount.times do
         begin
-          collection << Card.find_or_create_by_slug(card.to_slug)
+          new_card = Card.find_or_create_by_slug(card.to_slug, amount)
+          collection << new_card
         rescue
           return "#{card} is not a valid entry"
         end
         
-      end
     end
-
     collection
 
   end
@@ -46,19 +45,33 @@ class Card < ActiveRecord::Base
     Card.create(card_hash)
   end
 
+
+
   def self.new_from_collection(card_arr)
   	card_arr.collect do |card|
   		Card.new(card)
   	end
   end
 
-  def self.find_or_create_by_slug(slug)
-    results = find_by_slug(slug)
-    if results.nil?
-      self.create_by_slug(slug)
+  def self.find_or_create_by_slug(slug, amount=1)
+    collection = []
+    card = find_by_slug(slug)
+    if card.nil?
+      new_search = ScryfallWrapper.new
+      card_hash = new_search.find_card_by_slug(slug)
+      card = Card.find_by(scryfall_id: card_hash[:scryfall_id])
+      if card.nil?
+        card = Card.create(card_hash)
+      end
+      amount.times do 
+        collection << card
+      end
     else
-      results
+      amount.times do
+        collection << card
+      end
     end
+    collection
   end
 
 end

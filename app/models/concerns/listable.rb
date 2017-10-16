@@ -3,7 +3,8 @@ module Listable
 	def card_hash(cards=nil)
 		cards = self.cards if cards.nil?
 		card_count = Hash.new(0)
-		cards.each do |card|
+		cards.each do |card|	
+			
 			card_count[card] += 1
 		end
 		card_count
@@ -21,13 +22,14 @@ module Listable
 	def cards_of_type(type)
 		case type
 			when "creature"
-				cards =	self.cards.select {|card|card[:card_type].downcase.include?("creature")}
+				
+				cards =	self.cards.select {|card|card[:card_type].downcase.include?("creature") unless card[:card_type].nil?}
 			when "land"
-				cards = self.cards.select {|card|card[:card_type].downcase.include?("land")}
+				cards = self.cards.select {|card|card[:card_type].downcase.include?("land") unless card[:card_type].nil?}
 			when "spell"
-				cards = self.cards.select {|card|!card[:card_type].downcase.include?("creature") && !card[:card_type].downcase.include?("land")}
+				cards = self.cards.select {|card|!card[:card_type].downcase.include?("creature") && !card[:card_type].downcase.include?("land") unless card[:card_type].nil? }
 			else
-				cards = self.cards.select {|card|card[:card_type].downcase.include?(type)}
+				cards = self.cards.select {|card|card[:card_type].downcase.include?(type) unless card[:card_type].nil? }
 		end
 		
 		card_hash(cards)

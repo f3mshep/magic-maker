@@ -4,11 +4,8 @@
 		<!-- options for the owner to interact with the deck -->
 			<%if @user == @deck.user%>
 				<div style="display: inline;" class="container">
-					<form style="display: inline;" method="post" action="/decks/<%=@deck.slug%>/delete">
-						<input type="hidden" name="_method" value="DELETE">
-						<a class="btn-material-second" href="/decks/<%=@deck.slug%>/edit">EDIT</a>
-						<button class="btn-material">Delete</button>
-					</form>
+					<a class="btn-material-second" href="/decks/<%=@deck.slug%>/edit">Edit</a>
+					<a href="#" class="btn-material" data-toggle="modal" data-target="#deleteDeck" >Delete</a>
 				</div>
 			<%end%>
 		 <h5>by <%=@deck.user.name%></h5>
@@ -69,14 +66,15 @@
 			<%if comment.user == @user%>
 				<form method="post" action="/comments/<%=comment.id%>/edit">
 					<input type="hidden" name="_method" value="DELETE">
-					<a class="btn-material-second" href="/comments/<%=comment.id%>/edit">Edit</a>
-					<button class="btn-material">Delete</button>
+					<button class="btn-material-second">Yes</button>
+					<a href="#" class="btn-material" data-dismiss="modal">No</a>
 				</form>
 			<%end%>
 		</div>
 		<hr>
 	<%end%>
 </div>
+<br>
 
 
 <!-- Create new comment area-->	
@@ -84,17 +82,38 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content content-box">
       <div class="modal-body">
-				<div class="container">
-						<div class="form-group">
-							<form method="post" action="/comments/new">
-							<input type="hidden" name="user" value="<%=@user.slug%>">
-							<input type="hidden" name="deck" value="<%=@deck.slug%>">
-							<textarea class="form-control" placeholder="New comment" name="comment"></textarea>
-							<br>
-							<button type="submit" class="btn-material-second">Add Comment</button>
-						</form>
-					</div>
-				</div>
+		<div class="container">
+				<div class="form-group">
+					<form method="post" action="/comments/new">
+					<input type="hidden" name="user" value="<%=@user.slug%>">
+					<input type="hidden" name="deck" value="<%=@deck.slug%>">
+					<textarea class="form-control" placeholder="New comment" name="comment"></textarea>
+					<br>
+					<button type="submit" class="btn-material-second">Add Comment</button>
+				</form>
+			</div>
+		</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="deleteDeck" tabindex="-1" role="dialog" aria-labelledby="comment" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content content-box">
+      <div class="modal-body">
+		<div class="container">
+				<div class="form-group">
+					<h3>Are you sure you want to delete <%=@deck.name%>?</h3>
+					<p>This action cannot be undone.</p>
+					<form style="display: inline;" method="post" action="/decks/<%=@deck.slug%>/delete">
+						<input type="hidden" name="_method" value="DELETE">
+						<button class="btn-material-second">Yes</button>
+						<a href="#" class="btn-material" data-dismiss="modal" >No</a>
+					</form>
+				</form>
+			</div>
+		</div>
       </div>
     </div>
   </div>
