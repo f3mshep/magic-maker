@@ -42,9 +42,10 @@ class ScryfallWrapper
 
 	def find_card_by_slug(slug)
 		query = "q=!" + slug
-		results = self.call(query)
-		if results.nil?
-			query = "q="
+		begin
+			results = self.call(query)
+		rescue
+			query = "&order=edhrec&q=" + slug
 			results = self.call(query)
 		end
 		results[:collection].first

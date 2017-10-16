@@ -20,8 +20,16 @@ class DeckController < ApplicationController
 	post '/decks/new' do
 		redirect '/login' if !logged_in?
 		decklist = Card.create_from_decklist(params[:cards])
-		sideboard = Sideboard.create
+		if !decklist.is_a?(Array)
+			flash[:error] = "#{decklist}"
+			redirect "/decks/new"
+		end
 		sidelist = Card.create_from_decklist(params[:sideboard])
+		if !sidelist.is_a?(Array)
+			flash[:error] = "#{sidelist}"
+			redirect "/decks/new"
+		end
+		sideboard = Sideboard.create
 		sideboard.cards << sidelist
 		deck = Deck.create(name: params[:name], format: params[:format], description: params[:description], sideboard: sideboard, user: current_user)
 		deck.cards << decklist
@@ -40,14 +48,21 @@ class DeckController < ApplicationController
 		@deck = Deck.find_by_slug(params[:name])
 		redirect '/login' if current_user != @deck.user
 		decklist = Card.create_from_decklist(params[:cards])
+		if !decklist.is_a?(Array)
+			flash[:error] = "#{decklist}"
+			redirect "/decks/#{@deck.slug}/edit"
+		end
 		sidelist = Card.create_from_decklist(params[:sideboard])
-
+		if !sidelist.is_a?(Array)
+			flash[:error] = "#{sidelist}"
+			redirect "/decks/#{@deck.slug}/edit"
+		end
 		@deck.update(description: params[:description], format: params[:format])
 		@deck.sideboard.cards.clear
 		@deck.sideboard.cards << sidelist
 		@deck.cards.clear
 		@deck.cards << decklist
-		flash[:sucess] = "Deck #{deck.name} updated"
+		flash[:success] = "Deck #{@deck.name} updated"
 		redirect "/decks/#{@deck.slug}/edit"
 	end
 
@@ -61,9 +76,10 @@ class DeckController < ApplicationController
 	delete '/decks/:name/delete' do
 		redirect '/login' if !logged_in?
 		@deck = Deck.find_by_slug(params[:name])
+		user = @deck.user.name
 		redirect '/login' if current_user != @deck.user
 		@deck.destroy
-		redirect '/decks'
+		redirect "#{user.slug}/decks/"
 	end
 
 end

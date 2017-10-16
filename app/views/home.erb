@@ -21,7 +21,7 @@
             </div>
           </div>
             <div class="col-md-6">
-              <p><%="Created by #{deck.user.name}"%></p>
+              <a href="/<%=deck.user.slug%>/decks"><p><%="Created by #{deck.user.name}"%></p></a>
             </div>
           </div>
           <hr>
@@ -42,5 +42,6 @@
           <%end%>
       </div>
     </div>
+    <p>&nbsp</p>
 	</div>
 </div>

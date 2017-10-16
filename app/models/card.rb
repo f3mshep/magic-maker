@@ -27,7 +27,12 @@ class Card < ActiveRecord::Base
         card = items
       end
       amount.times do
-        collection << Card.find_or_create_by_slug(card.to_slug)
+        begin
+          collection << Card.find_or_create_by_slug(card.to_slug)
+        rescue
+          return "#{card} is not a valid entry"
+        end
+        
       end
     end
 
@@ -50,7 +55,7 @@ class Card < ActiveRecord::Base
   def self.find_or_create_by_slug(slug)
     results = find_by_slug(slug)
     if results.nil?
-      create_by_slug(slug)
+      self.create_by_slug(slug)
     else
       results
     end

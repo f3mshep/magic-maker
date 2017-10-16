@@ -45,6 +45,7 @@ class Deck < ActiveRecord::Base
 	end
 
 	def color_identity
+
 		color_matches = []
 
 		colors = {'{W}' => {'White'=>'https://i.imgur.com/YavuZMp.png'},'{U}' => {'Blue' => 'https://i.imgur.com/8EN6jSv.png'},'{B}' => {'Black'=>'https://i.imgur.com/PMqnD7P.png'},'{R}' => {'Red' => 'https://i.imgur.com/aWGaaQx.png'},'{G}' => {'Green' => 'https://i.imgur.com/I5VJiVL.png'}}
@@ -57,7 +58,7 @@ class Deck < ActiveRecord::Base
 				end
 			end
 		end
-		color_matches << "colorless" if color_matches.empty?
+		color_matches << {"Colorless" => "http://media.wizards.com/2015/images/daily/Colorless-symbol.png"} if color_matches.empty?
 		color_matches.uniq
 	end
 
