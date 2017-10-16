@@ -24,9 +24,47 @@
 				<p><%=pretty_formats.join(", ")  %></p>
 				<h4>Average Market Price</h4>
 				<p>$<%= @card.price %></p>
+				<br>
+				<%if logged_in?%>
+					<a data-toggle="modal" data-target="#addToDeck" class="btn-material-second" href="#">Add card to deck</a>
+				<% end %>
 			</div>
-
+				
 			</div>
+			<&nbsp>
 		</div>
 	</div>
+</div>
+
+<!-- MODAL TIME -->
+<div class="modal fade" id="addToDeck" tabindex="-1" role="dialog" aria-labelledby="comment" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content content-box">
+      <div class="modal-body">
+		<div class="container">
+			<h4>Add to deck</h4>
+			<br>
+			<form class="form-group">
+				<div>
+					<label>
+						<select class="custom-select">
+							<%current_user.decks.each do |deck|%>
+								<option name="name"><%=deck.name%></option>
+							<%end%>
+						</select>
+					 </label>
+				</div>
+				<div>
+					<label>
+						<input type="radio" name="location" value="main"> Main deck
+					</label>
+					<label>
+						<input type="radio" name="location" value="main"> Sideboard
+					</label>
+				</div>
+			</form>
+		</div>
+      </div>
+    </div>
+  </div>
 </div>
