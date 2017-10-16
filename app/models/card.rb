@@ -9,6 +9,17 @@ class Card < ActiveRecord::Base
   has_many :sideboard_cards
   has_many :sideboards, through: :sideboard_cards
 
+
+  def self.database_scraper(query=nil)
+    query = 'as=&order=&q=cmc>0' if query.nil?
+    results = ScryfallWrapper.new.call(query)
+    Card.create_or_find_from_collection(results[:collection])
+    if results[:next_page]
+      goto = results[:next_page].scan(/(?<=\?).*/).first
+      database_scraper(goto)
+    end
+  end
+
   def self.create_or_find_from_collection(card_arr)
     card_arr.collect {|card| Card.find_or_create_by(card)}
   end
