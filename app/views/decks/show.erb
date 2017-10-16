@@ -2,6 +2,7 @@
 	<div class="container-fluid">
 		<h3 style="display: inline;"> <%=@deck.name%> </h3>
 		<!-- options for the owner to interact with the deck -->
+
 			<%if @user == @deck.user%>
 				<div style="display: inline;" class="container">
 					<a class="btn-material-second" href="/decks/<%=@deck.slug%>/edit">Edit</a>
@@ -45,6 +46,7 @@
 				<br>
 			</div>
 			<div class="col-md-3">
+				<br>
 				<h5 style="display: inline;">Price</h5> <p style="display: inline;"><%=" $#{@deck.price}"%></p>
 			</div>
 		</div> <!-- END OF COLUMN -->
@@ -64,10 +66,10 @@
 			<p><%=comment.content%></p>
 			<p><%="-#{comment.user.name} #{comment.created_at.localtime.pretty}"%></p>
 			<%if comment.user == @user%>
-				<form method="post" action="/comments/<%=comment.id%>/edit">
+				<form method="post" action="/comments/<%=comment.id%>/delete">
 					<input type="hidden" name="_method" value="DELETE">
-					<button class="btn-material-second">Yes</button>
-					<a href="#" class="btn-material" data-dismiss="modal">No</a>
+					<a href="/comments/<%=comment.id%>/edit" class="btn-material-second">Edit</a>
+					<button class="btn-material" data-dismiss="modal">Delete</button>
 				</form>
 			<%end%>
 		</div>

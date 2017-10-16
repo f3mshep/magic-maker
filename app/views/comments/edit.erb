@@ -1,7 +1,10 @@
-<form method="post" action="/comments/<%=@comment.id%>/edit">
-	<div class="form-group">
-		<h5><%="#{@comment.created_at.localtime.pretty} #{@comment.user.name} posted:"%></h5>
-		<textarea name="content"><%=@comment.content%></textarea>
-		<input type="submit" class="btn btn-primary" value="Submit">
-	</div>
-</form>
+<div class="container content-box">
+	<form method="post" action="/comments/<%=@comment.id%>/edit">
+		<div class="form-group">
+			<h5><%="#{@comment.created_at.localtime.pretty} #{@comment.user.name} posted:"%></h5>
+			<textarea class="form-control" name="content"><%=@comment.content%></textarea>
+			<br>
+			<input type="submit" class="btn btn-primary" value="Submit">
+		</div>
+	</form>
+</div>

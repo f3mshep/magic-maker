@@ -25,7 +25,7 @@ class CommentController < ApplicationController
 		redirect "/decks/#{comment.deck.slug}"
 	end
 
-	delete '/comments/:id/edit' do
+	delete '/comments/:id/delete' do
 		comment = Comment.find(params[:id].to_i)
 		redirect '/login' if comment.user != current_user
 		comment.destroy

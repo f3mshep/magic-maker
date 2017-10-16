@@ -21,7 +21,14 @@ class Card < ActiveRecord::Base
   end
 
   def self.create_or_find_from_collection(card_arr)
-    card_arr.collect {|card| Card.find_or_create_by(card)}
+    card_arr.collect do |card|
+      new_card = Card.find_by(scryfall_id: card[:scryfall_id])
+      if new_card.nil?
+        new_card = Card.create(card)
+      end
+      new_card
+    end
+     #Card.find_or_create_by(card)
   end
 
   def self.create_from_decklist(decklist)
