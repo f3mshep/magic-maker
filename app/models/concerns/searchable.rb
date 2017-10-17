@@ -9,7 +9,7 @@ module Searchable
 		set = set_parser(params[:set])
 		type = type_parser(params[:type_line])
 		colour = colour_parser(params[:color])
-		"#{query}#{colour}#{set}#{type}#{order}"
+		"q=#{colour}#{set}#{type}#{query}#{order}"
 	end
 
 	def colour_parser(colour_input)
@@ -32,9 +32,10 @@ module Searchable
 	end
 
 	def text_parser(query)
+		return nil if query.empty?
 		input = query.downcase.split.collect{|string|string.scan(/[a-z]/)}
   	input = input.collect {|arr|arr.join("")}.join('+')
-  		"q=" + input
+  		"+" + input
 	end
 
 	def order_parser(order)
