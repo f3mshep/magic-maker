@@ -43,6 +43,26 @@
     box-shadow: none, 0 0 0 3px rgba(134, 142, 150, 0.5) !important;
     }
 
+ .btn-material .disabled:hover {
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  display: inline-block;
+  text-transform: uppercase;
+  font-weight: 500;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  border: 2px solid transparent;
+  padding: 0.4rem 1rem;
+  font-size: .9em;
+  line-height: 1.25;
+  border-radius: 0.125rem;
+  color: white;
+  background-color: #484848 !important;
+  border-color: #484848 !important;
+
+ }   
+
 .btn-material-second:focus, .btn-material-second:hover {
 	text-decoration: none;
 	outline: 0;

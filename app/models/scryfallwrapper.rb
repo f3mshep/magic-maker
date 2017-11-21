@@ -11,14 +11,10 @@ class ScryfallWrapper
 		#url = base_url + order + query
 		#colon =  %3A
 		#spaces = +
-		#eventually will be a method that allows controller to stick in c:r and this thing will parse it cuz it is badass.
-		#method that allows a user to search by type, rules text, or card name
-		#optional switches allow user to include cards of a certain color, type, or rarity
-		#ordered default by name, optional switches allow to sort by rarity, cost, and CMC
 	end
 
 	def browse(query)
-		#method that shows user ALL of cards with a given trait, with optional order arguments. 
+		#method that shows user ALL of cards with a given trait, with optional order arguments.
 		#Traits are color, CMC, and set
 		#order is default by name, can be price, CMC, or rarity
 	end
@@ -53,7 +49,7 @@ class ScryfallWrapper
 
 	def call(query)
 		url = search_query(query)
-		#method that returns an array of hashes, each element in the hash represents 
+		#method that returns an array of hashes, each element in the hash represents
 		response = RestClient.get(url)
 		json_collection = JSON.parse(response)
 
