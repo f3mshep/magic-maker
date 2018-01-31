@@ -20,10 +20,18 @@
 					<p><%= @card.flavor_text %></p>
 				<% end %>
 				<h4>Legalities</h4>
-				<% pretty_formats = @card.formats.split.collect{|format| format.capitalize}%>
-				<p><%=pretty_formats.join(", ")  %></p>
+				<% if @card.formats %>
+					<% pretty_formats = @card.formats.split.collect{|format| format.capitalize}.join(", ")%>
+				<% else %>
+					<% pretty_formats = "Restricted" %>
+				<% end %>
+				<p><%=pretty_formats %></p>
 				<h4>Average Market Price</h4>
-				<p>$<%= @card.price %></p>
+				<%if @card.price%>
+					<p>$<%= @card.price %></p>
+				<%else%>
+					<p>More than a piece of cardboard should be worth</p>
+				<%end%>
 				<br>
 				<%if logged_in?%>
 					<a data-toggle="modal" data-target="#addToDeck" class="btn-material-second" href="#">Add card to deck</a>
