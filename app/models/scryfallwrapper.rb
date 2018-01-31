@@ -68,7 +68,7 @@ class ScryfallWrapper
 			card_hash = {}
 			card_hash[:scryfall_id] = card["id"]
 			card_hash[:name] = card["name"]
-			card_hash[:image_url] = card["image_uri"]
+			card_hash[:image_url] = card["image_uris"]["normal"]
 			card_hash[:rarity] = card["rarity"]
 			card_hash[:cmc] = card["cmc"]
 			card_hash[:mana_cost] = card["mana_cost"]
